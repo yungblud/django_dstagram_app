@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}
+Photo List
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+
+                {% for photo in photos %}
+                <p>Author: {{ photo.author.username }}</p>
+                <p>Text: {{ photo.text|linebreaksbr }}</p>
+                <p>Photo:
+                    <img src="{{ photo.photo.url }}" style="width: 100%"/>
+                </p>
+                <p class="text-right">
+                    <a href="{% url 'photo:post_detail' pk=photo.id %}" class="btn btn-xs btn-success">댓글달기</a>
+                </p>
+
+                {% endfor %}
+
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+
+{% endblock %}
