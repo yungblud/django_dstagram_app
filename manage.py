@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
+# from django.contrib.sites.models import Site
 
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")

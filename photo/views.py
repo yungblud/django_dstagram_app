@@ -11,6 +11,9 @@ from django.shortcuts import render, redirect
 from django.views.generic import CreateView, DeleteView, UpdateView
 
 from photo.models import Photo
+# delete후에 (post)
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 
 # <로그인 관련 여부 처리>
 # 함수형 뷰 : decorator
@@ -39,6 +42,14 @@ class UploadView(LoginRequiredMixin,CreateView):
 class DeleteView(LoginRequiredMixin, DeleteView):
     model = Photo
     success_url = '/'
+
+# 파일 과 함께 삭제
+@receiver(post_delete, sender=Photo)
+def post_delete(sender, instance, **kwargs):
+    storage, path = instance.photo.storage, instance.photo.path
+    #  디렉터리 보안 관련 사항
+    if(path != '.') and (path != 'photos/') and (path != 'photos/.'):
+        storage.delete(path)
 
 class UpdateView(LoginRequiredMixin, UpdateView):
     model = Photo
