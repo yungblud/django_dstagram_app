@@ -17,6 +17,7 @@
             <ul class="nav float-right">
                 <li class="nav-item"><a href="/" class="active nav-link ">Home</a></li>
                 {% if user.is_active %}
+                <li class="nav-item"><a href="#" class="active nav-link ">Welcome, {{ user.get_username }}</a></li>
                 <li class="nav-item"><a href="{% url 'photo:photo_upload' %}" class="active nav-link ">Upload</a></li>
                 <li class="nav-item"><a href="{% url 'accounts:logout' %}" class="active nav-link ">Logout</a></li>
                 {% else %}
@@ -29,6 +30,10 @@
     </header>
     {% block content %}
     {% endblock %}
+
+    <footer class="footer">
+        <p>&copy; 2018 Fastcampus, Inc. Powered By Django 2</p>
+    </footer>
 </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -4,7 +4,7 @@ from django.contrib import admin
 from photo.models import Photo
 
 class PhotoAdmin(admin.ModelAdmin):
-    list_display = ['id', 'author', 'photo', 'created', 'text', 'updated']
+    list_display = ['id', 'author', 'title', 'photo', 'created', 'text', 'updated']
     list_filter = ['author', 'created', 'updated']
     search_fields = ['text', 'updated']
     raw_id_fields = ['author']

@@ -1,20 +1,35 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Detail
+{{ object.title|truncatechars:10 }}
 {% endblock %}
 
 {% block content %}
 <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
+        <p>Title: {{ object.title }}</p>
         <p>Author: {{ object.author.username }}</p>
         <p>Content: {{ object.text|linebreaksbr }}</p>
         <p>
             <img src="{{ object.photo.url }}" style="width: 100%;"/>
         </p>
+        {% if user.get_username == object.author.username %}
+        <a href="{% url 'photo:photo_delete' pk=photo.id %}" class="btn btn-danger">삭제하기</a>
+        <a href="{% url 'photo:photo_update' pk=photo.id %}" class="btn btn-info">수정하기</a>
+        {% endif %}
     </div>
     <div class="col-md-2"></div>
 
+
+</div>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 panel panel-default">
+        {% load disqus_tags %}
+        {% disqus_show_comments %}
+
+    </div>
+    <div class="col-md-2"></div>
 </div>
 {% endblock %}

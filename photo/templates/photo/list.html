@@ -10,6 +10,7 @@ Photo List
 
                 {% for photo in photos %}
                 <p>Author: {{ photo.author.username }}</p>
+                <p>Title : {{ photo.title }}</p>
                 <p>Text: {{ photo.text|linebreaksbr }}</p>
                 <p>Photo:
                     <img src="{{ photo.photo.url }}" style="width: 100%"/>

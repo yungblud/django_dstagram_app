@@ -5,6 +5,7 @@ from accounts.forms import RegisterForm
 
 
 def register(request):
+    # POST, GET 분기
     if request.method == "POST":
         register_form = RegisterForm(request.POST)
 
@@ -13,6 +14,7 @@ def register(request):
             new_user.set_password(register_form.cleaned_data['password'])
             new_user.save()
             return render(request, 'registration/register_done.html', {'new_user': new_user})
+    #     GET일때
     else:
         register_form = RegisterForm()
     return render(request, 'registration/register.html', {'form': register_form})

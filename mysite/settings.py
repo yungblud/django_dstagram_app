@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'photo',
     'accounts',
+    'disqus',
+    'django.contrib.sites',
 ]
 
 MIDDLEWARE = [
@@ -59,10 +61,13 @@ TEMPLATES = [
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
+            # 전체 페이지에서 공용으로 사용하는 것들 처리.
+            # ex) shoppingmall's cart
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
+                # user (base.html)
                 'django.contrib.messages.context_processors.messages',
             ],
         },
@@ -127,3 +132,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Login후 이동할 url
 LOGIN_REDIRECT_URL = '/photo'
+
+DISQUS_WEBSITE_SHORTNAME= 'dstagram-4'

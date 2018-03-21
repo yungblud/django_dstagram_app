@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect
 # Class,
 # Function 매개변수로 무조건 (request)
 # 용도차이 없음..
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DeleteView, UpdateView
 
 from photo.models import Photo
 
@@ -25,7 +25,7 @@ def post_list(request):
 
 class UploadView(LoginRequiredMixin,CreateView):
     model = Photo
-    fields = ['text', 'photo']
+    fields = ['title', 'text', 'photo']
     template_name = 'photo/upload.html'
 
     def form_valid(self, form):
@@ -35,4 +35,13 @@ class UploadView(LoginRequiredMixin,CreateView):
             return redirect('/')
         else:
             return self.render_to_response({'form': form})
+
+class DeleteView(LoginRequiredMixin, DeleteView):
+    model = Photo
+    success_url = '/'
+
+class UpdateView(LoginRequiredMixin, UpdateView):
+    model = Photo
+    fields = ['title', 'photo', 'text']
+    template_name = 'photo/upload.html'
 
