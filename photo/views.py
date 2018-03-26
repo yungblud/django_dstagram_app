@@ -36,11 +36,15 @@ class UploadView(LoginRequiredMixin,CreateView):
 
     def form_valid(self, form):
         form.instance.author_id = self.request.user.id
+
         if form.is_valid():
             form.instance.save()
-            return redirect('/')
-            # from django.urls import reverse
-            # return reverse("photo:post_detail", kwargs={'pk': self.object.id})
+
+
+            # return redirect('/')
+            # return self.get_absolute_url(self)
+            from django.urls import reverse
+            return redirect(reverse("photo:post_detail", kwargs={'pk': form.instance.id}))
         else:
             return self.render_to_response({'form': form})
 
