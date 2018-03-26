@@ -28,6 +28,11 @@
         </nav>
          <h3 class="text-muted"><a href="/">Dstagram</a></h3>
     </header>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{message.tags}}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
     {% block content %}
     {% endblock %}
 

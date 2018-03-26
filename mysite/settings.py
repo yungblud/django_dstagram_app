@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'accounts',
     'disqus',
     'django.contrib.sites',
+    'tagging.apps.TaggingConfig',
 ]
 
 MIDDLEWARE = [

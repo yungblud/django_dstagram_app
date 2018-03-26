@@ -14,6 +14,12 @@
         <p>
             <img src="{{ object.photo.url }}" style="width: 100%;"/>
         </p>
+        {% load tagging_tags %}
+        {% tags_for_object object as tags %}
+        Tag:
+        {% for tag in tags %}
+         <a href="{% url 'photo:tag_post_list' tag.name %}">{{ tag.name }}</a>
+        {% endfor %}
         {% if user.get_username == object.author.username %}
         <a href="{% url 'photo:photo_delete' pk=photo.id %}" class="btn btn-danger">삭제하기</a>
         <a href="{% url 'photo:photo_update' pk=photo.id %}" class="btn btn-info">수정하기</a>

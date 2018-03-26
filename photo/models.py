@@ -1,12 +1,14 @@
-from django.contrib.auth.models import User
-from django.db import models
-
-# Create your models here.
+from io import BytesIO
 
 # 업로드된 컨텐트 다시 조작
 from PIL import Image
-from io import BytesIO
+from django.contrib.auth.models import User
 from django.core.files.base import ContentFile
+from django.db import models
+from tagging.fields import TagField
+
+
+# Create your models here.
 
 class Photo(models.Model):
     # db -> orm..으로 접근(다이렉트가 아닌) ->
@@ -21,7 +23,7 @@ class Photo(models.Model):
     # 생성된 처음 시점만..
     updated = models.DateTimeField(auto_now=True)
     # 갱신이 있을때마다(실제 모델이 업데이트될때)
-
+    tag = TagField()
     class Meta:
         ordering = ['-updated']
 
@@ -64,4 +66,5 @@ class Photo(models.Model):
 
     def get_absolute_url(self):
         from django.urls import reverse
-        return reverse('photo:post_detail', args=[str(self.id)])
+        from django.urls import reverse_lazy
+        return reverse_lazy('photo:post_detail', kwargs={'pk': self.id})

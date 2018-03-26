@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 {% block title %}
-Photo List
+Tag List
 {% endblock %}
 
 {% block content %}
-<div class="row">
+    {% for photo in object_list %}
+
+        <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
 
-        {% for photo in photos %}
         <p>Author: {{ photo.author.username }}</p>
         <p>Title : {{ photo.title }}</p>
         <p>Text: {{ photo.text|linebreaksbr }}</p>
@@ -21,11 +22,9 @@ Photo List
 
         </p>
 
-        {% endfor %}
 
     </div>
     <div class="col-md-2"></div>
 </div>
-
-
+    {% endfor %}
 {% endblock %}
