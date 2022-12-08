@@ -1,5 +1,5 @@
 api==0.0.7
-certifi==2018.1.18
+certifi==2022.12.7
 chardet==3.0.4
 disqus==0.0.4
 dj-database-url==0.5.0
